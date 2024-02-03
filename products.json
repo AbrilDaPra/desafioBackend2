@@ -1,0 +1,20 @@
+[
+  {
+    "title": "T-shirt",
+    "description": "White cotton t-shirt",
+    "price": 150,
+    "thumbnail": "img1.jpg",
+    "code": "A01",
+    "stock": 200,
+    "id": 1
+  },
+  {
+    "title": "Pants",
+    "description": "Blue jeans",
+    "price": 200,
+    "thumbnail": "img2.jpg",
+    "code": "A002",
+    "stock": 140,
+    "id": 2
+  }
+]

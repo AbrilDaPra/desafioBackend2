@@ -1,5 +1,4 @@
-const fs = require('fs').promises;
-const path = require('path');
+import fs from 'fs';
 
 class ProductManager {
     constructor(filePath) {
@@ -64,7 +63,7 @@ class ProductManager {
     } 
     
     async deleteProduct(id) {
-        let listOfProducts = this.loadProductsFromFile();
+        let listOfProducts = await this.loadProductsFromFile();
 
         const indexToDelete = listOfProducts.findIndex(product => product.id === id);
         
@@ -80,7 +79,7 @@ class ProductManager {
 
     async saveProductsToFile(products) {
         try{
-            await fs.writeFile(this.path, JSON.stringify(products || this.products, null, 2));
+            await fs.promises.writeFile(this.path, JSON.stringify(products || this.products, null, 2));
         } catch (error) {
             throw new Error("Hubo un error al guardar los productos en el archivo.");
         }    
@@ -88,7 +87,7 @@ class ProductManager {
 
     async loadProductsFromFile() {
         try{
-            const fileContent = await fs.readFile(path, 'utf-8');
+            const fileContent = await fs.promises.readFile(this.path, 'utf-8');
             if(fileContent) {
                 const loadedProducts = JSON.parse(fileContent);
                 return loadedProducts;
