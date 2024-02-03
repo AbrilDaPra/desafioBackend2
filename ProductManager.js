@@ -99,7 +99,85 @@ class ProductManager {
 }
 
 const filePath = './products.json';
+
+//PROCESO DE TESTING
+
+//1. Se crea una instancia de la clase ProductManager
 const productManager = new ProductManager(filePath);
+
+//2. Se llama a getProducts, devuelve un array vacio
+(async () => {
+    const products = await productManager.getProducts();
+    if (Array.isArray(products) && products.length === 0) {
+      console.log('Prueba 2 pasada');
+    } else {
+      console.log('Prueba 2 fallada');
+    }
+})();
+
+//3. Se llama al método addProduct con los campos
+const productToAdd = {
+    title: "producto prueba", 
+    description: "este es un producto prueba", 
+    price: 200, 
+    thumbnail: "sin imagen", 
+    code: "abc123", 
+    stock: 25   
+}
+
+const result = await productManager.addProduct(productToAdd);
+console.log(result);
+
+//4. Llamo al método getProducts y aparece el producto recién agregado
+const productsAfterAdd = await productManager.getProducts();
+console.log(productsAfterAdd);
+
+//5. Llamo al método getProductsById y se corrobora que devuelva el producto
+//con el id especificado. Si no existe, arroja un error
+const productAdded = await ProductManager.getProductsById(result.id);
+if(productAdded) {
+    console.log("Producto encontrado por ID;", productAdded);
+} else {
+    console.error("Error: No se encontró el producto por el ID");
+}
+
+//6. Llamo al método updateProduct e intento cambiar un campo de algún producto.
+// Evaluo que no se elimine el id y que sí se haya hecho la actualización.
+const productIdToUpdate = 1;
+const updatePriceField = 500;
+
+try{
+    await productManager.updateProduct(productIdToUpdate, updatePriceField);
+    const updatedProduct = await productManager.getProductsById(productIdToUpdate);
+    
+    if (updatedProduct) {
+        console.log("Producto actualizado con éxito:", updatedProduct);
+    } else {
+        console.error("Error, no se encontró el producto con el ID especificado.");
+    }
+    
+} catch (error) {
+    console.error("Error al intentar actualizar el producto:", error.message);
+}
+
+//7. Llamo al método deleteProduct y se evalua que se elimine el producto o que arroje error
+// en caso de no existir
+const productIdToDelete = 1;
+
+try{
+    await productManager.deleteProduct(productIdToDelete);
+    const deletedProduct = await productManager.getProductsById(productIdToDelete);
+
+    if (!deletedProduct){
+        console.log("Producto eliminado exitosamente.");
+    } else {
+        console.error("Error al intentar eliminar el producto.")
+    }
+
+} catch (error) {
+    console.error("Error al intentar eliminar el producto:", error.message);
+}
+
 
 const tshirt = await productManager.addProduct({
     title: "T-shirt", 
