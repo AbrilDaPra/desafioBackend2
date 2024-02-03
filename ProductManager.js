@@ -63,17 +63,20 @@ class ProductManager {
     } 
     
     async deleteProduct(id) {
-        let listOfProducts = await this.loadProductsFromFile();
+        try{
+            let listOfProducts = await this.loadProductsFromFile();
+            const indexToDelete = listOfProducts.findIndex(product => product.id === id);
+            
+            if(indexToDelete !== -1) {
+                listOfProducts = listOfProducts.filter(product => product.id !== id);
+                await this.saveProductsToFile(listOfProducts);
 
-        const indexToDelete = listOfProducts.findIndex(product => product.id === id);
-        
-        if(indexToDelete !== -1) {
-            listOfProducts = listOfProducts.filter(product => product.id !== id);
-            await this.saveProductsToFile(listOfProducts);
-
-            console.log("Producto eliminado correctamente");
-        } else {
-            console.error("No se pudo eliminar porque no se encontró un producto con ese ID");
+                console.log("Producto eliminado correctamente");
+            } else {
+                console.error("No se pudo eliminar porque no se encontró un producto con ese ID");
+            } 
+        }catch (error) {
+            console.error("Error al intentar eliminar el producto:", error.message);
         } 
     }
 
@@ -107,11 +110,15 @@ const productManager = new ProductManager(filePath);
 
 //2. Se llama a getProducts, devuelve un array vacio
 (async () => {
-    const products = await productManager.getProducts();
-    if (Array.isArray(products) && products.length === 0) {
-      console.log('Prueba 2 pasada');
-    } else {
-      console.log('Prueba 2 fallada');
+    try{
+        const existingProducts = await productManager.getProducts();
+        if (Array.isArray(existingProducts) && existingProducts.length === 0) {
+            console.log('No hay productos en la lista.');
+        } else {
+            console.error('Hay productos existentes en la lista.');
+        }
+    } catch (error) {
+        console.error("Error al ejecutar la prueba:", error.message);
     }
 })();
 
@@ -134,7 +141,7 @@ console.log(productsAfterAdd);
 
 //5. Llamo al método getProductsById y se corrobora que devuelva el producto
 //con el id especificado. Si no existe, arroja un error
-const productAdded = await ProductManager.getProductsById(result.id);
+const productAdded = await productManager.getProductsById(result.id);
 if(productAdded) {
     console.log("Producto encontrado por ID;", productAdded);
 } else {
@@ -144,10 +151,10 @@ if(productAdded) {
 //6. Llamo al método updateProduct e intento cambiar un campo de algún producto.
 // Evaluo que no se elimine el id y que sí se haya hecho la actualización.
 const productIdToUpdate = 1;
-const updatePriceField = 500;
+const updatedFields = {price: 500};
 
 try{
-    await productManager.updateProduct(productIdToUpdate, updatePriceField);
+    await productManager.updateProduct(productIdToUpdate, updatedFields);
     const updatedProduct = await productManager.getProductsById(productIdToUpdate);
     
     if (updatedProduct) {
@@ -166,6 +173,7 @@ const productIdToDelete = 1;
 
 try{
     await productManager.deleteProduct(productIdToDelete);
+
     const deletedProduct = await productManager.getProductsById(productIdToDelete);
 
     if (!deletedProduct){
