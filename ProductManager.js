@@ -99,21 +99,37 @@ class ProductManager {
     }
 }
 
-const productManager = new ProductManager(path);
+const filePath = './products.json';
+const productManager = new ProductManager(filePath);
 
-const tshirt = productManager.addProduct("T-shirt", "White cotton t-shirt", 150, "img1.jpg", "A01", 200);
-const pants = productManager.addProduct("Pants", "Blue jeans", 200, "img2.jpg", "A002", 140);
+const tshirt = await productManager.addProduct({
+    title: "T-shirt", 
+    description: "White cotton t-shirt", 
+    price: 150, 
+    thumbnail: "img1.jpg", 
+    code: "A01", 
+    stock: 200
+});
 
-console.log(productManager.getProducts());
+const pants = await productManager.addProduct({
+    title: "Pants", 
+    description:"Blue jeans", 
+    price: 200, 
+    thumbnail: "img2.jpg", 
+    code: "A002", 
+    stock: 140
+});
 
-const productFound = productManager.getProductsById(1);
+console.log(await productManager.getProducts());
+
+const productFound = await productManager.getProductsById(1);
 if (productFound) {
     console.log(productFound);
 } else {
     console.error("Producto no encontrado.");
 }
 
-const productNotFound = productManager.getProductsById(999);
+const productNotFound = await productManager.getProductsById(999);
 if (productNotFound) {
     console.log(productNotFound);
 } else {
