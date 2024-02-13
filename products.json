@@ -10,20 +10,100 @@
   },
   {
     "title": "T-shirt",
-    "description": "White cotton t-shirt",
+    "description": "Classic white cotton t-shirt, perfect for everyday wear.",
     "price": 150,
     "thumbnail": "img1.jpg",
-    "code": "A01",
+    "code": "A001",
     "stock": 200,
     "id": 2
   },
   {
-    "title": "Pants",
-    "description": "Blue jeans",
+    "title": "Blue jeans",
+    "description": "Blue denim jeans with a comfortable fit and stylish design.",
     "price": 200,
     "thumbnail": "img2.jpg",
     "code": "A002",
     "stock": 140,
     "id": 3
+  },
+  {
+    "title": "Sweatshirt",
+    "description": "Cozy grey sweatshirt with a soft fleece lining, ideal for chilly days.",
+    "price": 900,
+    "thumbnail": "img3.jpg",
+    "code": "A003",
+    "stock": 150,
+    "id": 4
+  },
+  {
+    "title": "Hoodie",
+    "description": "Black hoodie featuring a front pouch pocket and adjustable drawstrings.",
+    "price": 600,
+    "thumbnail": "img5.jpg",
+    "code": "A005",
+    "stock": 250,
+    "id": 5
+  },{
+    "title": "Dress Shirt",
+    "description": "Formal dress shirt in crisp white cotton, suitable for business or formal occasions.",
+    "price": 780,
+    "thumbnail": "img6.jpg",
+    "code": "A006",
+    "stock": 130,
+    "id": 6
+  },
+  {
+    "title": "Polo Shirt",
+    "description": "Polo shirt in navy blue with a classic collar and embroidered logo.",
+    "price": 220,
+    "thumbnail": "img7.jpg",
+    "code": "A007",
+    "stock": 100,
+    "id": 7
+  },
+  {
+    "title": "Blazer",
+    "description": "Tailored blazer in charcoal grey, perfect for adding a touch of sophistication to any outfit.",
+    "price": 1200,
+    "thumbnail": "img8.jpg",
+    "code": "A008",
+    "stock": 440,
+    "id": 8
+  },
+  {
+    "title": "Leather Jacket",
+    "description": "Classic black leather jacket with zippered pockets and a sleek silhouette.",
+    "price": 1200,
+    "thumbnail": "img9.jpg",
+    "code": "A009",
+    "stock": 440,
+    "id": 9
+  },
+  {
+    "title": "Sweater",
+    "description": "Knit sweater in maroon with a crew neck and ribbed cuffs, perfect for layering.",
+    "price": 1900,
+    "thumbnail": "img10.jpg",
+    "code": "A0010",
+    "stock": 440,
+    "id": 10
+  },
+  {
+    "title": "Skirt",
+    "description": "A-line denim skirt with front button closure and belt loops.",
+    "price": 1200,
+    "thumbnail": "img11.jpg",
+    "code": "A0011",
+    "stock": 440,
+    "id": 11
+  },
+  {
+    "title": "Chinos",
+    "description": "Khaki chino pants featuring a straight-leg fit and four-pocket styling.",
+    "price": 1200,
+    "thumbnail": "img12.jpg",
+    "code": "A0012",
+    "stock": 440,
+    "id": 12
   }
 ]
