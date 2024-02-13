@@ -220,3 +220,5 @@ if (productNotFound) {
 } else {
     console.error("Producto no encontrado.");
 }
+
+export default ProductManager;
