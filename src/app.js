@@ -3,7 +3,7 @@ import ProductManager from '../ProductManager.js';
 
 const productManager = new ProductManager('../products.json');
 const app = express();
-const port = 3030;
+const port = 8080;
 
 app.listen(port, () => {
     console.log("Servidor corriendo en el puerto: ", port);
