@@ -1,9 +1,18 @@
 import express from 'express';
 import ProductManager from '../ProductManager.js';
+import router from './routes/usersRouter.js';
 
 const productManager = new ProductManager('../products.json');
 const app = express();
 const port = 8080;
+
+//Middlewares
+
+//Routes
+app.use("/api/main/", router);
+app.use("/api/products/", productsRouter);
+app.use("/api/users/", usersRouter);
+
 
 app.listen(port, () => {
     console.log("Servidor corriendo en el puerto: ", port);
